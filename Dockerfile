@@ -1,10 +1,3 @@
-FROM bitwalker/alpine-elixir-phoenix:1.4.0
+FROM narugami/alpine-elixir-phoenix-postgres:latest
 
-RUN apt-get update \
-  && apt-get install -y postgresql postgresql-contrib \
-  && apt-get install sudo \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# This Dockerfile doesn't need to have an entrypoint and a command
-# as Bitbucket Pipelines will overwrite it with a bash script.
+RUN apk --no-cache --no-progress add -q postgresql-contrib
